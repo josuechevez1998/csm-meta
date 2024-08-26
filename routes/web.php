@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiWhatsAppController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +24,8 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
+
+Route::get('webhook', [ApiWhatsAppController::class, 'verifyWebhook']);
+//Route::post('webhook', [ApiWhatsAppController::class, 'verifyWebhook']);
     
 require __DIR__ . '/auth.php';
