@@ -33,6 +33,7 @@ new class extends Component {
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
                 @role('System')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" wire:navigate>
@@ -50,6 +51,35 @@ new class extends Component {
                         </x-nav-link>
                     </div>
                 @endrole
+
+                @hasanyrole('System|Admin')
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <div x-data="{ open: false }" class="relative">
+                            <button @click="open = ! open"
+                                class="inline-flex items-center px-3 py-2 pt-6 border border-transparent text-sm font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150 text-center">
+                                {{ __('Settings') }}
+                                {{ __('Types') }}
+                                <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+
+                            <div x-show="open" @click.away="open = false"
+                                class="absolute left-0 mt-1 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
+                                <div class="py-1 text-center">
+                                    <a href="{{ route('types-customers.index') }}"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out">
+                                        {{ __('Customers') }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endhasanyrole
+
+
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -130,23 +160,6 @@ new class extends Component {
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </button>
-
-                @hasanyrole('System')
-                    <hr>
-
-                    <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('user.index')"  wire:navigate>
-                        {{ __('Users') }}
-                    </x-responsive-nav-link>
-
-                    <x-responsive-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')" wire:navigate>
-                        {{ __('Roles') }}
-                    </x-responsive-nav-link>
-
-                    <x-responsive-nav-link :href="route('permissions.index')" :active="request()->routeIs('permissions.index')" wire:navigate>
-                        {{ __('Permissions') }}
-                    </x-responsive-nav-link>
-                @else
-                @endhasanyrole
             </div>
         </div>
     </div>

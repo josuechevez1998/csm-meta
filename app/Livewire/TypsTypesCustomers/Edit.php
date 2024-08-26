@@ -20,7 +20,7 @@ class Edit extends Component
     {
         $this->form->update();
 
-        return $this->redirectRoute('typs-types-customers.index', navigate: true);
+        return $this->redirectRoute('types-customers.index', navigate: true);
     }
 
     #[Layout('layouts.app')]

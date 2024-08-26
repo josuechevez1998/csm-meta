@@ -20,7 +20,7 @@ class Create extends Component
     {
         $this->form->store();
 
-        return $this->redirectRoute('typs-types-customers.index', navigate: true);
+        return $this->redirectRoute('types-customers.index', navigate: true);
     }
 
     #[Layout('layouts.app')]

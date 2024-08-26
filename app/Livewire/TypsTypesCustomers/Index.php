@@ -25,6 +25,6 @@ class Index extends Component
     {
         $typsTypesCustomer->delete();
 
-        return $this->redirectRoute('typs-types-customers.index', navigate: true);
+        return $this->redirectRoute('types-customers.index', navigate: true);
     }
 }
