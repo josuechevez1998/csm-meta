@@ -20,7 +20,8 @@ class ApiWhatsAppController extends Controller
     }
 
     /**
-     * Verificar y autenticacion de conversacion
+     * Verificar y autenticacion datos enviados 
+     * desde whatsapp
      * 
      * @param Request $request enviados de Api WTP
      */
